@@ -13,7 +13,7 @@ public class DemoApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(DemoApplication.class.getResource("MainLayout.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        stage.setTitle("SIMSUR!");
+        stage.setTitle("SIMSUR");
         stage.setScene(scene);
         stage.show();
     }

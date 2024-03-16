@@ -10,7 +10,12 @@
       <Button layoutX="88.0" layoutY="21.0" mnemonicParsing="false" text="Button" />
       <Button layoutX="154.0" layoutY="21.0" mnemonicParsing="false" text="Button" />
       <TreeView layoutX="14.0" layoutY="60.0" prefHeight="508.0" prefWidth="201.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="60.0" />
-      <ListView layoutX="216.0" layoutY="60.0" prefHeight="215.0" prefWidth="764.0" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0" />
+      <TableView fx:id="emailTableView" layoutX="216.0" layoutY="60.0" prefHeight="215.0" prefWidth="764.0" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0">
+         <columns>
+            <TableColumn fx:id="subjectCol" prefWidth="252.1999969482422" text="Subject" />
+            <TableColumn fx:id="senderCol" prefWidth="248.5999755859375" text="Sender" />
+            <TableColumn fx:id="sizeCol" prefWidth="83.0" text="Size" />
+         </columns></TableView>
       <WebView fx:id="messageRenderer" layoutX="216.0" layoutY="275.0" prefHeight="293.0" prefWidth="764.0" AnchorPane.bottomAnchor="10.399993896484375" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="275.0000061035156" />
    </children>
 </AnchorPane>
