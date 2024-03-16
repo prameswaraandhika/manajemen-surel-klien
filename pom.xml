@@ -66,7 +66,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.prameswaradev.manajemensurelklien/com.prameswaradev.manajemensurelklien.HelloApplication
+                                com.prameswaradev.manajemensurelklien/com.prameswaradev.manajemensurelklien.DemoApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
