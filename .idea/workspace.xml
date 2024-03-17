@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8bc0feb8-7eb2-483a-a35d-f544e8ca5fd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/EmailMessageBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/EmailMessageBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/DemoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/MainLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/MainLayout.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +47,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Desktop\intelij-java-project\ManajemenSurelKlien\src\main\resources" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.prameswaradev.manajemensurelklien" />
     </key>

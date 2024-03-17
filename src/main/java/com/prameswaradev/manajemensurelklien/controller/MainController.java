@@ -6,10 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
@@ -17,6 +18,10 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+
+    @FXML
+    private TreeView<String> emailFoldersTreeView;
+    private TreeItem<String> root = new TreeItem<>();
 
     @FXML
     private TableView<EmailMessageBean> emailTableView;
@@ -56,6 +61,8 @@ public class MainController implements Initializable {
         subjectCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Sender"));
         senderCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Subject"));
         sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Size"));
+        emailTableView.setItems(data);
+
         sizeCol.setComparator(new Comparator<String>() {
             Integer i1, i2;
             @Override
@@ -65,7 +72,47 @@ public class MainController implements Initializable {
                 return i1.compareTo(i2);
             }
         });
-        emailTableView.setItems(data);
-        System.out.println("The document loaded..");
+        emailFoldersTreeView.setRoot(root);
+
+        root.setValue("example@yahoo.com");
+        root.setGraphic(resolveIcon(root.getValue()));
+
+        TreeItem<String> Inbox = new TreeItem<String>("Inbox", resolveIcon("Inbox"));
+        TreeItem<String> Sent = new TreeItem<String>("Sent", resolveIcon("Sent"));
+        TreeItem<String> Subitem1 = new TreeItem<String>("Subitem1", resolveIcon("Subitem1"));
+        TreeItem<String> Subitem2 = new TreeItem<String>("Subitem2",resolveIcon("Subitem2"));
+        Sent.getChildren().addAll(Subitem1, Subitem2);
+        TreeItem<String> Spam = new TreeItem<String>("Spam", resolveIcon("Spam"));
+        TreeItem<String> Trash = new TreeItem<String>("Trash", resolveIcon("Trash"));
+
+        root.getChildren().addAll(Inbox, Sent, Spam, Trash);
+        root.setExpanded(true);
+    }
+
+    private Node resolveIcon(String treeItemValue) {
+        String lowerCaseTreeItemValue = treeItemValue.toLowerCase();
+        ImageView returnIcon;
+        try {
+            if (lowerCaseTreeItemValue.contains("inbox")) {
+                returnIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/inbox.png")));
+            } else if (lowerCaseTreeItemValue.contains("sent")) {
+                returnIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/sent2.png")));
+            } else if (lowerCaseTreeItemValue.contains("spam")) {
+                returnIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/spam.png")));
+            } else if (lowerCaseTreeItemValue.contains("@")) {
+                returnIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/email.png")));
+            } else {
+                returnIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/folder.png")));
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Invalid image location!!!");
+            e.printStackTrace();
+            returnIcon = new ImageView();
+        }
+
+        returnIcon.setFitHeight(16);
+        returnIcon.setFitWidth(16);
+
+        return returnIcon;
     }
 }
