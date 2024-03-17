@@ -1,17 +1,21 @@
-package com.prameswaradev.manajemensurelklien;
+package com.prameswaradev.manajemensurelklien.model;
 
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class EmailMessageBean {
+    public static Map<String, Integer> formattedValues = new HashMap<>();
     private SimpleStringProperty sender;
     private SimpleStringProperty subject;
-    private SimpleIntegerProperty size;
+    private SimpleStringProperty size;
 
     public EmailMessageBean(String sender, String subject, Integer size) {
         this.sender = new SimpleStringProperty(sender);
         this.subject = new SimpleStringProperty(subject);
-        this.size = new SimpleIntegerProperty(size);
+        this.size = new SimpleStringProperty(formatSize(size));
     }
     public String getSender() {
         return sender.get();
@@ -37,15 +41,34 @@ public class EmailMessageBean {
         this.subject.set(subject);
     }
 
-    public int getSize() {
+    public String getSize() {
         return size.get();
     }
 
-    public SimpleIntegerProperty sizeProperty() {
+    public SimpleStringProperty sizeProperty() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(String size) {
         this.size.set(size);
     }
+
+    private String formatSize(Integer size){
+        String returnValue;
+        if(size<= 0){
+            returnValue =  "0";}
+
+        else if(size<1024){
+            returnValue = size + " B";
+        }
+        else if(size < 1048576){
+            returnValue = size/1024 + " KB";
+        }else{
+            returnValue = size/1048576 + " MB";
+        }
+        formattedValues.put(returnValue, size);
+        return returnValue;
+
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.prameswaradev.manajemensurelklien.controller;
 
-import com.prameswaradev.manajemensurelklien.EmailMessageBean;
+import com.prameswaradev.manajemensurelklien.model.EmailMessageBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -27,7 +28,7 @@ public class MainController implements Initializable {
     private TableColumn<EmailMessageBean, String> senderCol;
 
     @FXML
-    private TableColumn<EmailMessageBean, Integer> sizeCol;
+    private TableColumn<EmailMessageBean, String> sizeCol;
 
 
     @FXML
@@ -42,19 +43,28 @@ public class MainController implements Initializable {
     }
 
     final ObservableList<EmailMessageBean> data = FXCollections.observableArrayList(
-            new EmailMessageBean("Hello gais 1", "any@gmail.com", 10000),
-            new EmailMessageBean("Hello gais 2", "ano@gmail.com", 20000),
-            new EmailMessageBean("Hello gais 3", "ani@gmail.com", 30000),
-            new EmailMessageBean("Hello gais 4", "anu@gmail.com", 40000)
+            new EmailMessageBean("Hello gais 1", "any@gmail.com", 11110000),
+            new EmailMessageBean("Hello gais 2", "ano@gmail.com", 2000011),
+            new EmailMessageBean("Hello gais 3", "ani@gmail.com", 3000220),
+            new EmailMessageBean("Hello gais 4", "anu@gmail.com", 4200)
     );
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        messageRenderer.getEngine().loadContent("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis lorem venenatis euismod molestie. Etiam suscipit metus sit amet molestie rhoncus. Donec metus tortor, varius vel lorem sollicitudin, ullamcorper gravida enim. Sed rhoncus egestas enim, et condimentum nibh placerat non. Integer pharetra ante vitae tellus efficitur hendrerit. Etiam rhoncus porta malesuada. Nullam aliquam leo ut feugiat pretium. Pellentesque bibendum purus eget diam rutrum condimentum. Ut interdum, metus vitae fermentum rutrum, nulla dui tempor enim, ut egestas quam elit sed sapien. Aliquam lacinia rhoncus nibh sit amet aliquet. Pellentesque turpis arcu, ultricies aliquet sodales nec, consectetur eget nulla. Maecenas posuere dignissim pellentesque.\n" +
+        messageRenderer.getEngine().loadContent("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis lorem venenatis euismod molestie. Etiam suscipit metus sit amet molestie rhoncus. Donec metus tortor, varius vel lorem sollicitudin, ullamcorper gravida enim. Sed rhoncus egestas enim, et condimentum nibh placerat non. String pharetra ante vitae tellus efficitur hendrerit. Etiam rhoncus porta malesuada. Nullam aliquam leo ut feugiat pretium. Pellentesque bibendum purus eget diam rutrum condimentum. Ut interdum, metus vitae fermentum rutrum, nulla dui tempor enim, ut egestas quam elit sed sapien. Aliquam lacinia rhoncus nibh sit amet aliquet. Pellentesque turpis arcu, ultricies aliquet sodales nec, consectetur eget nulla. Maecenas posuere dignissim pellentesque.\n" +
                 "\n </html>");
         subjectCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Sender"));
         senderCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Subject"));
-        sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, Integer>("Size"));
+        sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Size"));
+        sizeCol.setComparator(new Comparator<String>() {
+            Integer i1, i2;
+            @Override
+            public int compare(String o1, String o2) {
+                i1 = EmailMessageBean.formattedValues.get(o1);
+                i2 = EmailMessageBean.formattedValues.get(o2);
+                return i1.compareTo(i2);
+            }
+        });
         emailTableView.setItems(data);
         System.out.println("The document loaded..");
     }
