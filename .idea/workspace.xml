@@ -5,10 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bc0feb8-7eb2-483a-a35d-f544e8ca5fd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/DummyDataEmail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/EmailDetailsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/view/ViewFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/EmailDetailsLayout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/DemoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/EmailMessageBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/EmailMessageBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/MainLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MainLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/images/email.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/images/folder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/images/inbox.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/images/sent1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/images/sent2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/images/spam.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prameswaradev/manajemensurelklien/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Record" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -43,10 +53,14 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/user/Desktop/intelij-java-project/ManajemenSurelKlien/src/main/java/com/prameswaradev/manajemensurelklien&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/intelij-java-project/JavaFxEmailClientCourse&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.prameswaradev.manajemensurelklien.model" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\intelij-java-project\ManajemenSurelKlien\src\main\resources" />
     </key>

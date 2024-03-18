@@ -2,16 +2,22 @@ package com.prameswaradev.manajemensurelklien.controller;
 
 import com.prameswaradev.manajemensurelklien.model.DummyDataEmail;
 import com.prameswaradev.manajemensurelklien.model.EmailMessageBean;
+import com.prameswaradev.manajemensurelklien.model.Singleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
@@ -24,6 +30,8 @@ public class MainController implements Initializable {
     private MenuItem showDetails = new MenuItem("Show details");
 
     private DummyDataEmail dummyDataEmail = new DummyDataEmail();
+
+    private Singleton singleton;
 
     @FXML
     private TableView<EmailMessageBean> emailTableView;
@@ -60,6 +68,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        messageRenderer.getEngine().loadContent("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis lorem venenatis euismod molestie. Etiam suscipit metus sit amet molestie rhoncus. Donec metus tortor, varius vel lorem sollicitudin, ullamcorper gravida enim. Sed rhoncus egestas enim, et condimentum nibh placerat non. String pharetra ante vitae tellus efficitur hendrerit. Etiam rhoncus porta malesuada. Nullam aliquam leo ut feugiat pretium. Pellentesque bibendum purus eget diam rutrum condimentum. Ut interdum, metus vitae fermentum rutrum, nulla dui tempor enim, ut egestas quam elit sed sapien. Aliquam lacinia rhoncus nibh sit amet aliquet. Pellentesque turpis arcu, ultricies aliquet sodales nec, consectetur eget nulla. Maecenas posuere dignissim pellentesque.\n" +
 //                "\n </html>");
+        singleton = Singleton.getIntance();
         subjectCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Sender"));
         senderCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Subject"));
         sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Size"));
@@ -99,9 +108,22 @@ public class MainController implements Initializable {
             var message = emailTableView.getSelectionModel().getSelectedItem();
             if (message != null){
                 messageRenderer.getEngine().loadContent(message.getContent());
+                singleton.setMessage(message);
             }
         });
         showDetails.setOnAction(e -> {
+            Pane pane = new Pane();
+            try {
+                pane = FXMLLoader.load(getClass().getResource("/EmailDetailsLayout.fxml"));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            Scene scene = new Scene(pane);
+            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
             System.out.println("Has been clicked!");
         });
     }
@@ -132,4 +154,6 @@ public class MainController implements Initializable {
 
         return returnIcon;
     }
+
+
 }
