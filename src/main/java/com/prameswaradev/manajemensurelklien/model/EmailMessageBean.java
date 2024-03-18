@@ -11,12 +11,16 @@ public class EmailMessageBean {
     private SimpleStringProperty sender;
     private SimpleStringProperty subject;
     private SimpleStringProperty size;
+    private String content;
 
-    public EmailMessageBean(String sender, String subject, Integer size) {
+    public EmailMessageBean(String sender, String subject, Integer size, String content) {
         this.sender = new SimpleStringProperty(sender);
         this.subject = new SimpleStringProperty(subject);
         this.size = new SimpleStringProperty(formatSize(size));
+        this.content = content;
     }
+
+
     public String getSender() {
         return sender.get();
     }
@@ -53,6 +57,14 @@ public class EmailMessageBean {
         this.size.set(size);
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     private String formatSize(Integer size){
         String returnValue;
         if(size<= 0){
@@ -68,7 +80,6 @@ public class EmailMessageBean {
         }
         formattedValues.put(returnValue, size);
         return returnValue;
-
     }
 
 }

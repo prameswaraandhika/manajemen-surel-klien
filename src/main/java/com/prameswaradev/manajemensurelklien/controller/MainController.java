@@ -1,8 +1,7 @@
 package com.prameswaradev.manajemensurelklien.controller;
 
+import com.prameswaradev.manajemensurelklien.model.DummyDataEmail;
 import com.prameswaradev.manajemensurelklien.model.EmailMessageBean;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +21,9 @@ public class MainController implements Initializable {
     @FXML
     private TreeView<String> emailFoldersTreeView;
     private TreeItem<String> root = new TreeItem<>();
+    private MenuItem showDetails = new MenuItem("Show details");
+
+    private DummyDataEmail dummyDataEmail = new DummyDataEmail();
 
     @FXML
     private TableView<EmailMessageBean> emailTableView;
@@ -47,21 +49,21 @@ public class MainController implements Initializable {
         System.out.println("Button1 clicked");
     }
 
-    final ObservableList<EmailMessageBean> data = FXCollections.observableArrayList(
-            new EmailMessageBean("Hello gais 1", "any@gmail.com", 11110000),
-            new EmailMessageBean("Hello gais 2", "ano@gmail.com", 2000011),
-            new EmailMessageBean("Hello gais 3", "ani@gmail.com", 3000220),
-            new EmailMessageBean("Hello gais 4", "anu@gmail.com", 4200)
-    );
+//    final ObservableList<EmailMessageBean> data = FXCollections.observableArrayList(
+//            new EmailMessageBean("Hello gais 1", "any@gmail.com", 11110000),
+//            new EmailMessageBean("Hello gais 2", "ano@gmail.com", 2000011),
+//            new EmailMessageBean("Hello gais 3", "ani@gmail.com", 3000220),
+//            new EmailMessageBean("Hello gais 4", "anu@gmail.com", 4200)
+//    );
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        messageRenderer.getEngine().loadContent("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis lorem venenatis euismod molestie. Etiam suscipit metus sit amet molestie rhoncus. Donec metus tortor, varius vel lorem sollicitudin, ullamcorper gravida enim. Sed rhoncus egestas enim, et condimentum nibh placerat non. String pharetra ante vitae tellus efficitur hendrerit. Etiam rhoncus porta malesuada. Nullam aliquam leo ut feugiat pretium. Pellentesque bibendum purus eget diam rutrum condimentum. Ut interdum, metus vitae fermentum rutrum, nulla dui tempor enim, ut egestas quam elit sed sapien. Aliquam lacinia rhoncus nibh sit amet aliquet. Pellentesque turpis arcu, ultricies aliquet sodales nec, consectetur eget nulla. Maecenas posuere dignissim pellentesque.\n" +
-                "\n </html>");
+//        messageRenderer.getEngine().loadContent("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis lorem venenatis euismod molestie. Etiam suscipit metus sit amet molestie rhoncus. Donec metus tortor, varius vel lorem sollicitudin, ullamcorper gravida enim. Sed rhoncus egestas enim, et condimentum nibh placerat non. String pharetra ante vitae tellus efficitur hendrerit. Etiam rhoncus porta malesuada. Nullam aliquam leo ut feugiat pretium. Pellentesque bibendum purus eget diam rutrum condimentum. Ut interdum, metus vitae fermentum rutrum, nulla dui tempor enim, ut egestas quam elit sed sapien. Aliquam lacinia rhoncus nibh sit amet aliquet. Pellentesque turpis arcu, ultricies aliquet sodales nec, consectetur eget nulla. Maecenas posuere dignissim pellentesque.\n" +
+//                "\n </html>");
         subjectCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Sender"));
         senderCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Subject"));
         sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Size"));
-        emailTableView.setItems(data);
+//        emailTableView.setItems(data);
 
         sizeCol.setComparator(new Comparator<String>() {
             Integer i1, i2;
@@ -84,9 +86,24 @@ public class MainController implements Initializable {
         Sent.getChildren().addAll(Subitem1, Subitem2);
         TreeItem<String> Spam = new TreeItem<String>("Spam", resolveIcon("Spam"));
         TreeItem<String> Trash = new TreeItem<String>("Trash", resolveIcon("Trash"));
-
         root.getChildren().addAll(Inbox, Sent, Spam, Trash);
         root.setExpanded(true);
+        emailTableView.setContextMenu(new ContextMenu(showDetails));
+        emailFoldersTreeView.setOnMouseClicked(e ->{
+            var item = emailFoldersTreeView.getSelectionModel().getSelectedItem();
+            if (item != null){
+                emailTableView.setItems(dummyDataEmail.emailFolders.get(item.getValue()));
+            }
+        });
+        emailTableView.setOnMouseClicked(e ->{
+            var message = emailTableView.getSelectionModel().getSelectedItem();
+            if (message != null){
+                messageRenderer.getEngine().loadContent(message.getContent());
+            }
+        });
+        showDetails.setOnAction(e -> {
+            System.out.println("Has been clicked!");
+        });
     }
 
     private Node resolveIcon(String treeItemValue) {
