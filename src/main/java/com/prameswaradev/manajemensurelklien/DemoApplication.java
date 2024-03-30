@@ -1,5 +1,6 @@
 package com.prameswaradev.manajemensurelklien;
 
+import com.prameswaradev.manajemensurelklien.view.ViewFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,10 +13,8 @@ import java.util.Optional;
 public class DemoApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DemoApplication.class.getResource("/MainLayout.fxml"));
-        System.out.println(getClass().getResource("/MainLayout.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
+        ViewFactory viewFactory = ViewFactory.defaultFactory;
+        Scene scene = viewFactory.getMainScene();
         stage.setTitle("SIMSUR");
         stage.setScene(scene);
         stage.show();
