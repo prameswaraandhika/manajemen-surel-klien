@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bc0feb8-7eb2-483a-a35d-f544e8ca5fd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/AbstractController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/ModelAccess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/table/AbstractTableItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/table/BoldableRowFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/DemoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/EmailDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/EmailDetailsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/view/ViewFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/EmailDetailsLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/EmailDetailsLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/DummyDataEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/DummyDataEmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/EmailMessageBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/model/EmailMessageBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/MainLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MainLayout.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +99,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/prameswaradev/manajemensurelklien/controller/MainController.java</url>
-          <line>116</line>
+          <line>130</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class DemoApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         ViewFactory viewFactory = ViewFactory.defaultFactory;
         Scene scene = viewFactory.getMainScene();
         stage.setTitle("SIMSUR");

@@ -2,6 +2,7 @@ package com.prameswaradev.manajemensurelklien.controller;
 
 import com.prameswaradev.manajemensurelklien.model.DummyDataEmail;
 import com.prameswaradev.manajemensurelklien.model.EmailMessageBean;
+import com.prameswaradev.manajemensurelklien.model.table.BoldableRowFactory;
 import com.prameswaradev.manajemensurelklien.view.ViewFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,6 +51,9 @@ public class MainController extends AbstractController implements Initializable 
     private Button Button1;
 
     @FXML
+    private Button unread;
+
+    @FXML
     private WebView messageRenderer;
 
     public MainController(ModelAccess modelAccess) {
@@ -61,10 +65,20 @@ public class MainController extends AbstractController implements Initializable 
         System.out.println("Button1 clicked");
     }
 
+    @FXML
+    private void unreadAction(ActionEvent actionEvent){
+        var message = getModelAccess().getSelectedMessage();
+        if (message != null){
+            message.setRead(!message.isRead());
+        }
+        System.out.println("Button1 clicked");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        messageRenderer.getEngine().loadContent("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis lorem venenatis euismod molestie. Etiam suscipit metus sit amet molestie rhoncus. Donec metus tortor, varius vel lorem sollicitudin, ullamcorper gravida enim. Sed rhoncus egestas enim, et condimentum nibh placerat non. String pharetra ante vitae tellus efficitur hendrerit. Etiam rhoncus porta malesuada. Nullam aliquam leo ut feugiat pretium. Pellentesque bibendum purus eget diam rutrum condimentum. Ut interdum, metus vitae fermentum rutrum, nulla dui tempor enim, ut egestas quam elit sed sapien. Aliquam lacinia rhoncus nibh sit amet aliquet. Pellentesque turpis arcu, ultricies aliquet sodales nec, consectetur eget nulla. Maecenas posuere dignissim pellentesque.\n" +
 //                "\n </html>");
+        emailTableView.setRowFactory(e -> new BoldableRowFactory<>());
         var viewFactory = ViewFactory.defaultFactory;
         subjectCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Sender"));
         senderCol.setCellValueFactory(new PropertyValueFactory<EmailMessageBean, String>("Subject"));

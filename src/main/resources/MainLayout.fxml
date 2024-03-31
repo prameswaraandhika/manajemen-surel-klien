@@ -8,7 +8,7 @@
    <children>
       <Button fx:id="button1" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#button1Action" text="Button1" />
       <Button layoutX="88.0" layoutY="21.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="154.0" layoutY="21.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="unread" layoutX="154.0" layoutY="21.0" mnemonicParsing="false" onAction="#unreadAction" text="Unread/Read" />
       <TreeView fx:id="emailFoldersTreeView" layoutX="14.0" layoutY="60.0" prefHeight="508.0" prefWidth="201.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="60.0" />
       <TableView fx:id="emailTableView" layoutX="216.0" layoutY="60.0" prefHeight="215.0" prefWidth="764.0" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0">
          <columns>

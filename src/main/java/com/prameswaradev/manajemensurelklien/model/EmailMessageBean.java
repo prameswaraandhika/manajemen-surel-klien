@@ -1,19 +1,21 @@
 package com.prameswaradev.manajemensurelklien.model;
 
+import com.prameswaradev.manajemensurelklien.model.table.AbstractTableItem;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class EmailMessageBean {
+public class EmailMessageBean extends AbstractTableItem {
     public static Map<String, Integer> formattedValues = new HashMap<>();
     private SimpleStringProperty sender;
     private SimpleStringProperty subject;
     private SimpleStringProperty size;
     private String content;
 
-    public EmailMessageBean(String sender, String subject, Integer size, String content) {
+    public EmailMessageBean(String sender, String subject, Integer size, String content, boolean isRead) {
+        super(isRead);
         this.sender = new SimpleStringProperty(sender);
         this.subject = new SimpleStringProperty(subject);
         this.size = new SimpleStringProperty(formatSize(size));

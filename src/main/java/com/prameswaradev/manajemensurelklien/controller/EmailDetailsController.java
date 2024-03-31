@@ -29,7 +29,7 @@ public class EmailDetailsController extends AbstractController implements Initia
     }
 
     @FXML
-    void ilegalOpperationAction(){
+    void ilegalOpperationAction() throws Exception {
         ViewFactory view= new ViewFactory();
         Scene mainScene = view.getMainScene();
         Stage stage = new Stage();
