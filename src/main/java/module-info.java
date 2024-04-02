@@ -2,6 +2,7 @@ module com.prameswaradev.manajemensurelklien {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires javax.mail.api;
 
 
     opens com.prameswaradev.manajemensurelklien to javafx.fxml;

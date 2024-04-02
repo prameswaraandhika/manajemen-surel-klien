@@ -2,6 +2,7 @@ package com.prameswaradev.manajemensurelklien.controller;
 
 import com.prameswaradev.manajemensurelklien.model.DummyDataEmail;
 import com.prameswaradev.manajemensurelklien.model.EmailMessageBean;
+import com.prameswaradev.manajemensurelklien.model.folder.EmailFolderBean;
 import com.prameswaradev.manajemensurelklien.model.table.BoldableRowFactory;
 import com.prameswaradev.manajemensurelklien.view.ViewFactory;
 import javafx.event.ActionEvent;
@@ -67,11 +68,19 @@ public class MainController extends AbstractController implements Initializable 
 
     @FXML
     private void unreadAction(ActionEvent actionEvent){
-        var message = getModelAccess().getSelectedMessage();
-        if (message != null){
-            message.setRead(!message.isRead());
+        EmailMessageBean message = getModelAccess().getSelectedMessage();
+        if(message != null){
+            boolean value = message.isRead();
+            message.setRead(!value);
+            EmailFolderBean<String> selectedFolder = getModelAccess().getSelectedFolder();
+            if(selectedFolder != null){
+                if(value){
+                    selectedFolder.incrementUnreadMessagesCount(1);
+                }else{
+                    selectedFolder.decrementUnreadMessagesCount();
+                }
+            }
         }
-        System.out.println("Button1 clicked");
     }
 
     @Override
@@ -94,25 +103,38 @@ public class MainController extends AbstractController implements Initializable 
                 return i1.compareTo(i2);
             }
         });
+
+        EmailFolderBean<String> root = new EmailFolderBean<>("");
         emailFoldersTreeView.setRoot(root);
+        emailFoldersTreeView.setShowRoot(false);
 
-        root.setValue("example@yahoo.com");
-        root.setGraphic(viewFactory.resolveIcon(root.getValue()));
+        EmailFolderBean<String> barosanu = new EmailFolderBean<>("example@yahoo.com");
+        root.getChildren().add(barosanu);
+        emailFoldersTreeView.setRoot(root);
+//        root.setValue("example@yahoo.com");
+//        root.setGraphic(viewFactory.resolveIcon(root.getValue()));
+        EmailFolderBean<String> Inbox = new EmailFolderBean<>("Inbox", "CompleteInbox");
+        EmailFolderBean<String> Sent = new EmailFolderBean<>("Sent", "CompleteSent");
+        Sent.getChildren().add(new EmailFolderBean<>("Subfolder1", "SubFolder1Complete"));
+        Sent.getChildren().add(new EmailFolderBean<>("Subfolder2", "SubFolder1Complete2"));
+        EmailFolderBean<String> Spam = new EmailFolderBean<>("Spam", "CompleteSpam");
 
-        TreeItem<String> Inbox = new TreeItem<String>("Inbox", viewFactory.resolveIcon("Inbox"));
-        TreeItem<String> Sent = new TreeItem<String>("Sent", viewFactory.resolveIcon("Sent"));
-        TreeItem<String> Subitem1 = new TreeItem<String>("Subitem1", viewFactory.resolveIcon("Subitem1"));
-        TreeItem<String> Subitem2 = new TreeItem<String>("Subitem2",viewFactory.resolveIcon("Subitem2"));
-        Sent.getChildren().addAll(Subitem1, Subitem2);
-        TreeItem<String> Spam = new TreeItem<String>("Spam", viewFactory.resolveIcon("Spam"));
-        TreeItem<String> Trash = new TreeItem<String>("Trash", viewFactory.resolveIcon("Trash"));
-        root.getChildren().addAll(Inbox, Sent, Spam, Trash);
-        root.setExpanded(true);
+        barosanu.getChildren().addAll(Inbox, Sent, Spam);
+
+        Inbox.getData().addAll(DummyDataEmail.Inbox);
+        Sent.getData().addAll(DummyDataEmail.Sent);
+        Spam.getData().addAll(DummyDataEmail.Spam);
+
+
+
         emailTableView.setContextMenu(new ContextMenu(showDetails));
         emailFoldersTreeView.setOnMouseClicked(e ->{
-            var item = emailFoldersTreeView.getSelectionModel().getSelectedItem();
-            if (item != null){
-                emailTableView.setItems(dummyDataEmail.emailFolders.get(item.getValue()));
+            EmailFolderBean<String> item = (EmailFolderBean<String>)emailFoldersTreeView.getSelectionModel().getSelectedItem();
+            if(item != null && !item.isTopElement()){
+                emailTableView.setItems(item.getData());
+                getModelAccess().setSelectedFolder(item);
+                //clear the selected message:
+                getModelAccess().setSelectedMessage(null);
             }
         });
         emailTableView.setOnMouseClicked(e ->{
